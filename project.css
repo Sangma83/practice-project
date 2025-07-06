@@ -1,0 +1,12 @@
+.main-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cart-container {
+  width: 70%;
+  box-shadow: 4px 4px 8px gray;
+  margin: auto;
+  text-align: center;
+
+}
