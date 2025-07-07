@@ -1,3 +1,7 @@
+const cartCount = document.getElementById("count").innerText;
+
+let convertedCount = parseInt(cartCount);
+
 const loadAllProduct = () => {
     fetch('https://fakestoreapi.com/products')
   .then(response => response.json())
@@ -29,6 +33,11 @@ const displayProduct = (products) => {
 
 
 const handleAddToCart = (name, price) => {
+    const cartCount = document.getElementById("count").innerText;
+
+    let convertedCount = parseInt(cartCount);
+    convertedCount += 1;
+    document.getElementById("count").innerText = convertedCount;
     //console.log(name, price);
     const container = document.getElementById("cart-main-container");
 
@@ -36,10 +45,21 @@ const handleAddToCart = (name, price) => {
     div.classList.add("cart-info");
     div.innerHTML = `
     <p>${name}</p>
-    <h3>${price}</h3>
+    <h3 class="price">${price}</h3>
 
     `;
     container.appendChild(div);
+    UpdateTotal();
+};
+
+
+const UpdateTotal = () => {
+const allPrice = document.getElementsByClassName("price");
+let count = 0;
+for (const element of allPrice) {
+    count = count + parseFloat(element.innerText)
+}
+document.getElementById("total").innerText = count.toFixed(2);
 };
 
 loadAllProduct();
